@@ -28,3 +28,21 @@ Console.WriteLine("Age is: " + age);
 Console.WriteLine("Powers are: " + "(" + powers1 + ")" + " " + "(" + powers2 + ")" + " " + "(" + powers3 + ")");
 
 Console.WriteLine("*************************************************");
+{
+    int deedTimeInHours1 = 20;
+    int deedTimeHours2 = 30;
+    int deedTimeHours3 = 40;
+
+    int totalTime = deedTimeInHours1 + deedTimeHours2 + deedTimeHours3;
+    Console.WriteLine("Total time spent " + totalTime);
+
+    int averagetime = totalTime / 3;
+    Console.WriteLine("Average time spent" + averagetime);
+
+    int numbercookies = totalTime * 5;
+    Console.WriteLine("Number of cookies" + numbercookies);
+}
+    
+
+
+
