@@ -1,117 +1,186 @@
-﻿using System.Collections;
-
-using System;
-/*
--Create variables:
--Hero name - String
-- Hero age - int
-- Hero powers - heroPower1, heroPower2, heroPower3
-- Create "Hero Card" view.Print variables to console
-*/
-
-string age = "33";
-string name = "lori";
-string powers1 = "goodheart";
-string powers2 = "nice";
-string powers3 = "strongbeliever";
-Console.WriteLine(name);
-Console.WriteLine("HelloWorld");
-Console.WriteLine("*************************************************");
-
-Console.WriteLine("Printing " + name + " Card:");
-
-Console.WriteLine("*************************************************");
-
-Console.WriteLine("Name is: " + name);
-
-Console.WriteLine("Age is: " + age);
-
-Console.WriteLine("Powers are: " + "(" + powers1 + ")" + " " + "(" + powers2 + ")" + " " + "(" + powers3 + ")");
-
-Console.WriteLine("*************************************************");
+﻿public class Hero
 {
-    int deedTimeInHours1 = 20;
-    int deedTimeHours2 = 30;
-    int deedTimeHours3 = 40;
+	string name;
+	string surname;
+	string nickname;
+	int heroID;
+	string herotype; //Hero or Villain
+	int deedTime;
 
-    int totalTime = deedTimeInHours1 + deedTimeHours2 + deedTimeHours3;
-    Console.WriteLine("Total time spent " + totalTime);
+	public Hero()
+	{ }
 
-    int averagetime = totalTime / 3;
-    Console.WriteLine("Average time spent" + averagetime);
+	public Hero(string name,
+				string surname,
+				string nickname,
+				int heroID,
+				string herotype,
+				int deedTime)
+	{
+		this.name = name;
+		this.surname = surname;
+		this.nickname = nickname;
+		this.heroID = heroID;
+		this.herotype = herotype;
+		this.deedTime = deedTime;
+	}
 
-    int numbercookies = totalTime * 5;
-    Console.WriteLine("Number of cookies" + numbercookies);
+	public string getName()
+	{
+		return this.name;
+	}
+
+	public void setName(string name)
+	{
+		this.name = name;
+	}
+
+	public string getSurname()
+	{
+		return this.surname;
+	}
+
+	public void setSurname(string surname)
+	{
+		this.surname = surname;
+	}
+
+	public string getNickname()
+	{
+		return this.nickname;
+	}
+
+	public void setNickname(string nickname)
+	{
+		this.nickname = nickname;
+	}
+
+	public string getHeroType()
+	{
+		return this.herotype;
+	}
+
+	public void setHeroType(string herotype)
+	{
+		this.herotype = herotype;
+	}
+
+	public int getHeroID()
+	{
+		return this.heroID;
+	}
+
+	public void setHeroID(int id)
+	{
+		this.heroID = id;
+	}
+
+	public int getdeedTime()
+	{
+		return this.deedTime;
+	}
+
+	public void setdeedTime(int deed)
+	{
+		this.deedTime = deed;
+	}
+
+	public void PrintInfo()
+	{
+		Console.WriteLine("Hero Info:");
+		Console.WriteLine("Name: " + name + "\n" +
+						  "Surname: " + surname + "\n"
+						  + "Nickname: " + nickname + "\n"
+						 + "HeroID: " + heroID + "\n"
+						  + "Herotype: " + herotype + "\n"
+						  + "DeedTime: " + deedTime + "\n");
+	}
+
+	public int calculatedLevel()
+	{
+		int Level = 0;
+
+		if (deedTime <= 20)
+			Level = 1;
+		else
+			if ((deedTime > 20) && (deedTime <= 40))
+			Level = 2;
+		else if (deedTime > 40)
+			Level = 3;
+
+		return Level;
+	}
+
+	public static void Main()
+
+	{
+		int levelValue = 0;
+		int levelOne = 0;
+		int levelMoreOne = 0;
+		bool isJohn = false;
+		int id = 0;
+		int deed = 0;
+
+		Console.WriteLine("Add a Hero...");
+
+		Hero h1 = new Hero("Lorianda", "Jatniece", "Lori", 1, "Hero", 20);
+		Hero h2 = new Hero("Peter", "Clark", "Superman", 2, "Hero", 100);
+		Hero h3 = new Hero("Wonder", "Woman", "Wonderwoman", 3, "Villain", 30);
+
+		Console.WriteLine("Enter your name: ");
+		string nameString = Console.ReadLine();
+
+		Console.WriteLine("Enter your surname: ");
+		string surnameString = Console.ReadLine();
+
+		Console.WriteLine("Enter your nickname: ");
+		string nicknameString = Console.ReadLine();
+
+		Console.WriteLine("Enter your heroID: ");
+		string heroIDString = Console.ReadLine();
+		bool herIDParsed = int.TryParse(heroIDString, out id);
+
+		Console.WriteLine("Enter your hero type: Hero or Villain");
+		string herotypeString = Console.ReadLine();
+
+		Console.WriteLine("Enter your Deed Time: ");
+		string deedTimeString = Console.ReadLine();
+		bool deedParsed = int.TryParse(deedTimeString, out deed);
+
+		Hero h4 = new Hero(nameString, surnameString, nicknameString, id, herotypeString, deed);
+
+		Console.WriteLine("Hero " + h4.getName() + " Added Successfully\n");
+
+		h1.PrintInfo();
+		h2.PrintInfo();
+		h3.PrintInfo();
+		h4.PrintInfo();
+
+		Hero[] Metropole = new Hero[4];
+		Metropole[0] = h1;
+		Metropole[1] = h2;
+		Metropole[2] = h3;
+		Metropole[3] = h4;
+
+		for (int i = 0; i < Metropole.Length; i++)
+		{
+			levelValue = Metropole[i].calculatedLevel();
+
+			if (levelValue == 1)
+				levelOne++;
+			else if (levelValue > 1)
+				levelMoreOne++;
+
+			if (Metropole[i].getName().Equals("John"))
+				isJohn = true;
+
+		}
+		Console.WriteLine("There are " + levelOne + " heroes with level 1");
+		Console.WriteLine("There are " + levelMoreOne + " heroes with the level which is larger than 1");
+
+		if (isJohn)
+			Console.WriteLine("There are heroes with name John");
+		else
+			Console.WriteLine("There are no heroes with name John");
+	}
 }
-int repeat = 0;
-
-var myList = new ArrayList();
-myList.Add("1");
-myList.Add("lori");
-myList.Add("33");
-myList.Add("goodheart");
-myList.Add("nice");
-myList.Add("strongbeliever");
-
-do
-{
-    Console.WriteLine("Select different parts of superhero card operations:");
-    Console.WriteLine("1- A List of superheroes");
-    Console.WriteLine("2- Add a new superohero");
-    Console.WriteLine("3- Showing a specific superhero information");
-    Console.WriteLine("4- Delete the superhero from the list");
-    Console.WriteLine("5- Quit");
-
-    string answer = Console.ReadLine();
-
-    switch (answer)
-    {
-        case "1":
-            Console.WriteLine("List of superheros:");
-            foreach (var item in myList)
-                Console.WriteLine(item + ", ");
-            break;
-        case "2":
-            Console.WriteLine("Enter SuperHero ID:");
-            string id = Console.ReadLine();
-            myList.Add(id);
-            Console.WriteLine("Enter SuperHero Name:");
-            name = Console.ReadLine();
-            myList.Add(name);
-            Console.WriteLine("Enter SuperHero Age:");
-            age = Console.ReadLine();
-            myList.Add(age);
-            Console.WriteLine("Enter SuperHero Power1:");
-            string power1 = Console.ReadLine();
-            myList.Add(power1);
-            Console.WriteLine("Enter SuperHero Power2:");
-            string power2 = Console.ReadLine();
-            myList.Add(power2);
-            Console.WriteLine("Enter SuperHero Power3:");
-            string power3 = Console.ReadLine();
-            myList.Add(power3);
-            Console.WriteLine("Added successfully");
-            break;
-        case "3":
-            Console.WriteLine("Enter superhero ID to display");
-            string ans = Console.ReadLine();
-            int ansInt = myList.IndexOf(ans);
-            for (int x = ansInt; x < ansInt + 6; x++)
-                Console.WriteLine(myList[x] + ",");
-            break;
-        case "4":
-            Console.WriteLine("Enter superhero ID to remove");
-            string ans1 = Console.ReadLine();
-            int ansInt2 = myList.IndexOf(ans1);
-            myList.RemoveRange(ansInt2, 5);
-            Console.WriteLine("Removed successfully");
-            break;
-        case "5":
-            repeat = 1;
-            break;
-        default:
-            Console.WriteLine("Error Choose another selection");
-            break;
-    }
-} while (repeat != 1);
-
